@@ -195,6 +195,28 @@ private suspend inline fun <reified T : Any> handleSuccess(
         onSuccess: (response: ResponseMessage) -> Unit,
         onFailure: (error: String) -> Unit
     ) {
-
+        makeRequest<ResponseMessage, Unit>(
+          method = HttpMethod.Get,
+            endpoint = "https://api.football-data.org/v4/matches",
+            onSuccess = onSuccess,
+            onFailure = onFailure
+        )
     }
+
+    //    override suspend fun loginUser(
+//        loginReqBody: LoginReqBody,
+//        onSuccess: (response: LoginResponse) -> Unit,
+//        onFailure: (error: String) -> Unit
+//    ) {
+//        makeRequest<LoginResponse, LoginReqBody>(
+//            method = HttpMethod.Post,
+//            endpoint = "/login",
+//            requestBody = loginReqBody,
+//            onSuccess = onSuccess,
+//            onFailure = onFailure
+//        )
+//    }
+
+
+
 }
