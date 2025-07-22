@@ -1,7 +1,7 @@
 package com.mobile.soccerleague.application
 
 import android.app.Application
-import com.mobile.petra.di.initKoin
+import com.mobile.soccerleague.di.initKoin
 import org.koin.android.ext.koin.androidContext
 
 
