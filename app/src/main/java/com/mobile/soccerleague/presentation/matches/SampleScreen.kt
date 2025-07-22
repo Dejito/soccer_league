@@ -19,14 +19,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.koin.androidx.compose.koinViewModel
+
 
 @Composable
-fun SampleScreen(matchesViewModel: MatchesViewModel) {
+fun SampleScreen(modifier: Modifier = Modifier, matchesViewModel: MatchesViewModel = koinViewModel()) {
     Scaffold(
 //        topBar = TopAppBar(title = "", actions = {})
     ) { paddingValues ->
         Column(
-            modifier = Modifier
+            modifier = modifier
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {

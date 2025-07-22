@@ -12,6 +12,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.mobile.soccerleague.presentation.matches.SampleScreen
 import com.mobile.soccerleague.ui.theme.SoccerLeagueTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,15 +22,21 @@ class MainActivity : ComponentActivity() {
         setContent {
             SoccerLeagueTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    SampleScreen(
                         modifier = Modifier.padding(innerPadding)
-                            .clickable(
-                                onClick = {
-
-                                }
-                            )
                     )
+
+                    //                        modifier = Modifier.padding(innerPadding)
+
+//                    Greeting(
+//                        name = "Android",
+//                        modifier = Modifier.padding(innerPadding)
+//                            .clickable(
+//                                onClick = {
+//
+//                                }
+//                            )
+//                    )
                 }
             }
         }

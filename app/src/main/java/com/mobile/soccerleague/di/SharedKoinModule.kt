@@ -1,22 +1,7 @@
-package com.mobile.petra.di
+package com.mobile.soccerleague.di
 
-//val sharedKoinModules = listOf(
-//    airtimeModule,
-//    cardRequestModule,
-//    cardActivationModule,
-//    commissionBalanceModule,
-//    verifyEmailModule,
-//    kegowModule,
-//    networkModule,
-//    cardManagementModule,
-//    cardPickupModule,
-//    userModule,
-//    authModule,
-//    transactionModule,
-//    locationModule,
-//    transferModule,
-//    tierUpgradeModule,
-//    cableModule,
-//    beneficiaryModule,
-//    billModule
-//)
+import com.mobile.soccerleague.presentation.matches.matchesModule
+
+val sharedKoinModules = listOf(
+    matchesModule
+)
