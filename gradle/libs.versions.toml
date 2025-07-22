@@ -18,6 +18,7 @@ lifecycleViewmodelCompose = "2.8.5"
 navigationCompose = "2.8.5"
 koin = "4.0.1"
 kotlinxCoroutinesCore = "1.10.1"
+kotlin-serialization = "1.9.10"
 
 
 
@@ -57,4 +58,5 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-serialization"}
 

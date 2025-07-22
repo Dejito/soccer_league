@@ -84,14 +84,14 @@ class SLRepositoryImpl : SLRepository {
         try {
             ensureHttpClientInitialized()
 
-            var resolvedEndpoint = endpoint
+            var resolvedEndpoint = "endpoint"
             pathParameters.forEach { (key, value) ->
                 resolvedEndpoint = resolvedEndpoint.replace("{$key}", value)
             }
 
             val response: HttpResponse = httpClient.request {
                 this.method = method
-//                url("$baseUrl$resolvedEndpoint")
+                url("https://api.football-data.org/v4/$resolvedEndpoint")
                 header("X-Auth-Token", "Bearer 532232336f1c42df8a03887f431bf763")
                 additionalHeaders.forEach { (key, value) -> header(key, value) }
                 urlParameters.forEach { (key, value) -> parameter(key, value) }
@@ -197,7 +197,7 @@ private suspend inline fun <reified T : Any> handleSuccess(
     ) {
         makeRequest<ResponseMessage, Unit>(
           method = HttpMethod.Get,
-            endpoint = "https://api.football-data.org/v4/matches",
+            endpoint = "persons/44",
             onSuccess = onSuccess,
             onFailure = onFailure
         )

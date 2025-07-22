@@ -2,6 +2,7 @@ package com.mobile.soccerleague.presentation.matches
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mobile.soccerleague.data.entity.response.ResponseMessage
 import com.mobile.soccerleague.data.remote.SLRepository
 import kotlinx.coroutines.launch
 
@@ -14,28 +15,15 @@ import kotlinx.coroutines.launch
 class MatchesViewModel(private val slRepository: SLRepository) : ViewModel() {
 
     fun getTodayMatches(
-
+        onFailure: (String) -> Unit,
+        onSuccess: (ResponseMessage) -> Unit,
     ) {
         viewModelScope.launch {
-
+            slRepository.getAllFootballMatches(
+                onSuccess, onFailure,
+            )
         }
     }
-//
-//    fun authPhoneNumber(
-//        phoneNumber: String,
-//        onSuccess: (message: ResponseMessage) -> Unit,
-//        onFailure: (message: String) -> Unit
-//    ) {
-//        viewModelScope.launch {
-//            kegowRepository.authPhoneNumber(
-//                isDeviceTypeIOS = false,
-//                token = "",
-//                phoneNumber,
-//                onSuccess,
-//                onFailure
-//            )
-//        }
-//    }
 
 
 }
