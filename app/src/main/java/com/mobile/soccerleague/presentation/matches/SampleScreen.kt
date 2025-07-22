@@ -38,6 +38,7 @@ fun SampleScreen(modifier: Modifier = Modifier, matchesViewModel: MatchesViewMod
                 fontSize = 30,
                 fontWeight = FontWeight.W500,
                 modifier = Modifier.clickable {
+                    println("fucking got pressed")
                     matchesViewModel.getTodayMatches(
                         onSuccess = {
                             print("response from server: $it")

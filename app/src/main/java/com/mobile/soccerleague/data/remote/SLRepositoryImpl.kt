@@ -25,6 +25,7 @@ import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.content.TextContent
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 
@@ -50,9 +51,9 @@ class SLRepositoryImpl : SLRepository {
                 level = LogLevel.ALL
             }
             install(HttpTimeout) {
-                requestTimeoutMillis = 40000
-                connectTimeoutMillis = 40000
-                socketTimeoutMillis = 40000
+                requestTimeoutMillis = 60000
+                connectTimeoutMillis = 60000
+                socketTimeoutMillis = 60000
             }
             install(ContentNegotiation) {
                 json(Json {
@@ -85,7 +86,7 @@ class SLRepositoryImpl : SLRepository {
         try {
             ensureHttpClientInitialized()
 
-            var resolvedEndpoint = "endpoint"
+            var resolvedEndpoint = endpoint
             pathParameters.forEach { (key, value) ->
                 resolvedEndpoint = resolvedEndpoint.replace("{$key}", value)
             }
@@ -93,7 +94,7 @@ class SLRepositoryImpl : SLRepository {
             val response: HttpResponse = httpClient.request {
                 this.method = method
                 url("https://api.football-data.org/v4/$resolvedEndpoint")
-                header("X-Auth-Token", "Bearer 532232336f1c42df8a03887f431bf763")
+                header("X-Auth-Token", "532232336f1c42df8a03887f431bf763")
                 additionalHeaders.forEach { (key, value) -> header(key, value) }
                 urlParameters.forEach { (key, value) -> parameter(key, value) }
 

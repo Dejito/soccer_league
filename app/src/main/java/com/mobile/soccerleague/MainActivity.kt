@@ -21,9 +21,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SoccerLeagueTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     SampleScreen(
-                        modifier = Modifier.padding(innerPadding)
+//                        modifier = Modifier.padding(innerPadding)
                     )
 
                     //                        modifier = Modifier.padding(innerPadding)
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
 //                                }
 //                            )
 //                    )
-                }
+//                }
             }
         }
     }

@@ -8,11 +8,6 @@ import com.mobile.soccerleague.data.remote.SLRepository
 import kotlinx.coroutines.launch
 
 
-//class AuthViewModel(
-//    private val kegowRepository: KegowRepository
-//) : ViewModel() {
-
-
 class MatchesViewModel(private val slRepository: SLRepository) : ViewModel() {
 
     fun getTodayMatches(

@@ -3,6 +3,8 @@ package com.mobile.soccerleague.application
 import android.app.Application
 import com.mobile.soccerleague.di.initKoin
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.logger.AndroidLogger
+import org.koin.core.logger.Level
 
 
 class SLApplication : Application() {
@@ -11,7 +13,7 @@ class SLApplication : Application() {
 
         initKoin {
             androidContext(this@SLApplication)
-//            AndroidLogger(Level.ALL)
+            AndroidLogger(Level.INFO)
         }
     }
 

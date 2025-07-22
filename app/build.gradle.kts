@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "com.mobile.soccerleague"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.mobile.soccerleague"
@@ -25,7 +25,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -71,6 +71,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.okhttp)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.serialization.kotlinx.json)
     implementation(libs.kotlinx.serialization.json)
@@ -80,6 +81,7 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.koin.compose.viewmodel.v401)
+
 
     //test
     testImplementation(libs.junit)
