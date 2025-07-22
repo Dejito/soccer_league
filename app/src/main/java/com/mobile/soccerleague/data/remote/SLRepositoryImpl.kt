@@ -1,6 +1,7 @@
 package com.mobile.soccerleague.data.remote
 
 
+import com.mobile.soccerleague.data.entity.response.PlayerResponse
 import com.mobile.soccerleague.data.entity.response.ResponseMessage
 import io.ktor.client.HttpClient
 import io.ktor.client.network.sockets.SocketTimeoutException
@@ -192,10 +193,10 @@ private suspend inline fun <reified T : Any> handleSuccess(
 }
 
     override suspend fun getAllFootballMatches(
-        onSuccess: (response: ResponseMessage) -> Unit,
+        onSuccess: (response: PlayerResponse) -> Unit,
         onFailure: (error: String) -> Unit
     ) {
-        makeRequest<ResponseMessage, Unit>(
+        makeRequest<PlayerResponse, Unit>(
           method = HttpMethod.Get,
             endpoint = "persons/44",
             onSuccess = onSuccess,
