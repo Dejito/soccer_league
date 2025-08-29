@@ -1,16 +1,10 @@
-package com.mobile.soccerleague.presentation.matches
+package com.mobile.soccerleague.di
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,11 +13,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mobile.soccerleague.di.livescore.viewmodel.LiveScoresViewModel
 import org.koin.androidx.compose.koinViewModel
 
 
 @Composable
-fun SampleScreen(modifier: Modifier = Modifier, matchesViewModel: MatchesViewModel = koinViewModel()) {
+fun SampleScreen(modifier: Modifier = Modifier, matchesViewModel: LiveScoresViewModel = koinViewModel()) {
     Scaffold(
 //        topBar = TopAppBar(title = "", actions = {})
     ) { paddingValues ->
@@ -38,7 +33,7 @@ fun SampleScreen(modifier: Modifier = Modifier, matchesViewModel: MatchesViewMod
                 fontSize = 30,
                 fontWeight = FontWeight.W500,
                 modifier = Modifier.clickable {
-                    println("fucking got pressed")
+                    println("fucking got pressed man")
                     matchesViewModel.getTodayMatches(
                         onSuccess = {
                             print("response from server: $it")
