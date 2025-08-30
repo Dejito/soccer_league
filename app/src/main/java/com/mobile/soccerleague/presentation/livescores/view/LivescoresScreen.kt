@@ -68,12 +68,12 @@ fun MatchCard(score: Score) {
                     style = MaterialTheme.typography.labelSmall
                 )
                 Text(
-                    text = "10:30",
+                    text = score.utcDate,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(top = 4.dp)
                 )
                 Text(
-                    text = "MD: 39",
+                    text = "MD: ${score.currentMatchDay}",
                     style = MaterialTheme.typography.labelSmall,
                     modifier = Modifier.padding(top = 4.dp)
                 )
@@ -87,11 +87,11 @@ fun MatchCard(score: Score) {
 
             ) {
                 Text(
-                    text = "AS Avellino 1912",
+                    text = score.homeTeam,
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    text = "AS Cittadella",
+                    text = score.awayTeam,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(top = 12.dp)
                 )
@@ -113,12 +113,12 @@ fun MatchCard(score: Score) {
 
                 Column {
                     Text(
-                        text = "0",
+                        text = score.homeScore.toString(),
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "0",
+                        text = score.awayScore.toString(),
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }

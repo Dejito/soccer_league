@@ -1,4 +1,4 @@
-package com.mobile.petra.presentation.views.components
+package com.mobile.soccerleague.presentation.livescores.view.components
 
 import android.content.Context
 import android.widget.Toast
