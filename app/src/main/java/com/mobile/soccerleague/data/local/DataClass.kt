@@ -1,14 +1,15 @@
-package com.mobile.petra.data.local
+package com.mobile.soccerleague.data.local
 
 
-data class Product (
-    var title: String,
-    var slug: String,
-    var price: Double,
-    var description: String,
-    var category: ProdCategory,
-    var images: List<String>,
-    var isFavorite: Boolean = false,
+data class Score (
+    val utcDate: String,
+    val currentMatchDay: Int,
+    val homeTeam: String,
+    val awayTeam: String,
+    val timeSpent: Int,
+    val awayScore: Int,
+    val homeScore: Int,
+
 )
 
 data class ProdCategory (

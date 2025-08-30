@@ -34,7 +34,7 @@ fun SampleScreen(modifier: Modifier = Modifier, matchesViewModel: LiveScoresView
                 fontWeight = FontWeight.W500,
                 modifier = Modifier.clickable {
                     println("fucking got pressed man")
-                    matchesViewModel.getTodayMatches(
+                    matchesViewModel.getPlayerDetail(
                         onSuccess = {
                             print("response from server: $it")
                         },

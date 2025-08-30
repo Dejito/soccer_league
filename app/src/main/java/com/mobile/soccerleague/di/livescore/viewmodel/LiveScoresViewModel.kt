@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class LiveScoresViewModel(private val slRepository: SLRepositoryImpl) : ViewModel() {
 
-    fun getTodayMatches(
+    fun getPlayerDetail(
         onFailure: (String) -> Unit,
         onSuccess: (PlayerResponse) -> Unit,
     ) {
