@@ -13,16 +13,22 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Divider
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import com.mobile.petra.presentation.views.components.KegowDivider
+import com.mobile.soccerleague.presentation.livescores.view.components.KegowDivider
+import com.mobile.soccerleague.data.local.DataSource
+import com.mobile.soccerleague.data.local.Score
 
 
 @Composable
 fun LiveScores(modifier: Modifier = Modifier, matchesViewModel: LiveScoresViewModel = koinViewModel()) {
+
+    val scoresList = DataSource().loadScores()
+
     Scaffold(
 //        topBar = TopAppBar(title = "", actions = {})
     ) { paddingValues ->
@@ -31,14 +37,20 @@ fun LiveScores(modifier: Modifier = Modifier, matchesViewModel: LiveScoresViewMo
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {
-            MatchCard()
+            LazyColumn(
+//                contentPadding = PaddingValues(6.dp)
+            ) {
+                items(scoresList) { score ->
+                    MatchCard(score)
+                }
+            }
 
         }
     }
 }
 
 @Composable
-fun MatchCard() {
+fun MatchCard(score: Score) {
     Column {
         Row(
             modifier = Modifier

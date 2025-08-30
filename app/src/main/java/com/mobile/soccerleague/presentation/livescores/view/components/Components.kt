@@ -1,8 +1,7 @@
-package com.mobile.petra.presentation.views.components
+package com.mobile.soccerleague.presentation.livescores.view.components
 
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,7 +51,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mobile.petra.utils.priceFilter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -190,9 +188,9 @@ fun PetraOutlinedTextField(
                         )
                     },
                     colors = textFieldColors,
-                    visualTransformation = {
-                        priceFilter(it, isAmount)
-                    },
+//                    visualTransformation = {
+//                        priceFilter(it, isAmount)
+//                    },
                     singleLine = true, isError = isValidationError,
                     enabled = isClickable,
                     modifier = Modifier
