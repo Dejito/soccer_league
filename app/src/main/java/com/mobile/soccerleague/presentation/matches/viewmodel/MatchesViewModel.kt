@@ -15,9 +15,11 @@ class MatchesViewModel(private val slRepository: SLRepositoryImpl) : ViewModel()
     private val _footballMatches: MutableStateFlow<MatchesResponse?> = MutableStateFlow(null)
     val footballMatches: StateFlow<MatchesResponse?> = _footballMatches
 
-    private val _matchesUiStates: MutableStateFlow<MatchesUiStates> = MutableStateFlow(
+    private val _fetchMatchesUiStates: MutableStateFlow<MatchesUiStates> = MutableStateFlow(
         MatchesUiStates.Default
     )
+    val fetchMatchesUiStates: MutableStateFlow<MatchesUiStates> = _fetchMatchesUiStates
+
 
 
     fun getFootballMatches(
@@ -25,16 +27,16 @@ class MatchesViewModel(private val slRepository: SLRepositoryImpl) : ViewModel()
         onSuccess: (MatchesResponse) -> Unit,
     ) {
         viewModelScope.launch(context = Dispatchers.IO) {
-            _matchesUiStates.emit(MatchesUiStates.Loading)
+            _fetchMatchesUiStates.emit(MatchesUiStates.Loading)
             slRepository.getAllFootballMatches(
                 onSuccess = { successResponse ->
                     viewModelScope.launch(context = Dispatchers.IO) {
-                        _matchesUiStates.emit(MatchesUiStates.Success(successResponse))
+                        _fetchMatchesUiStates.emit(MatchesUiStates.Success(successResponse))
                     }
                 },
                 onFailure = { error ->
                     viewModelScope.launch(context = Dispatchers.IO) {
-                        _matchesUiStates.emit(MatchesUiStates.Error(error))
+                        _fetchMatchesUiStates.emit(MatchesUiStates.Error(error))
                     }
                 },
             )

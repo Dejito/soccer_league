@@ -17,6 +17,11 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import com.mobile.soccerleague.presentation.components.KegowDivider
@@ -28,8 +33,11 @@ import com.mobile.soccerleague.data.local.Score
 fun LiveScores(modifier: Modifier = Modifier, matchesViewModel: MatchesViewModel = koinViewModel()) {
 
     val scoresList = DataSource().loadScores()
+    var selectedBusiness: BusinessDetails? by remember { mutableStateOf(null) }
 
-//    matchesViewModel.getFootballMatches()
+    LaunchedEffect() { }
+
+    val matches = matchesViewModel.getFootballMatches(onFailure= {}, onSuccess={})
 
 
     Scaffold(
