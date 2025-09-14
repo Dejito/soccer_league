@@ -1,4 +1,4 @@
-package com.mobile.soccerleague.presentation.livescores.viewmodel
+package com.mobile.soccerleague.presentation.matches.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,9 +9,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class LiveScoresViewModel(private val slRepository: SLRepositoryImpl) : ViewModel() {
+class MatchesViewModel(private val slRepository: SLRepositoryImpl) : ViewModel() {
 
-    private val _footballMatches: MutableStateFlow<MatchesResponse?> = MutableStateFlow<MatchesResponse?>(null)
+    private val _footballMatches: MutableStateFlow<MatchesResponse?> = MutableStateFlow(null)
+    private val footballMatches: StateFlow<MatchesResponse?> = _footballMatches
 
     fun getPlayerDetail(
         onFailure: (String) -> Unit,

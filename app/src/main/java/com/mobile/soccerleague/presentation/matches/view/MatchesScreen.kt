@@ -1,4 +1,4 @@
-package com.mobile.soccerleague.presentation.livescores.view
+package com.mobile.soccerleague.presentation.matches.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -7,7 +7,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.mobile.soccerleague.presentation.livescores.viewmodel.LiveScoresViewModel
+import com.mobile.soccerleague.presentation.matches.viewmodel.MatchesViewModel
 import org.koin.androidx.compose.koinViewModel
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,11 +25,11 @@ import com.mobile.soccerleague.data.local.Score
 
 
 @Composable
-fun LiveScores(modifier: Modifier = Modifier, matchesViewModel: LiveScoresViewModel = koinViewModel()) {
+fun LiveScores(modifier: Modifier = Modifier, matchesViewModel: MatchesViewModel = koinViewModel()) {
 
     val scoresList = DataSource().loadScores()
 
-    matchesViewModel.getFootballMatches()
+//    matchesViewModel.getFootballMatches()
 
 
     Scaffold(
