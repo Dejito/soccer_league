@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.mobile.soccerleague.data.entity.response.MatchesResponse
 import com.mobile.soccerleague.data.entity.response.PlayerResponse
 import com.mobile.soccerleague.data.remote.SLRepositoryImpl
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -12,7 +13,34 @@ import kotlinx.coroutines.launch
 class MatchesViewModel(private val slRepository: SLRepositoryImpl) : ViewModel() {
 
     private val _footballMatches: MutableStateFlow<MatchesResponse?> = MutableStateFlow(null)
-    private val footballMatches: StateFlow<MatchesResponse?> = _footballMatches
+    val footballMatches: StateFlow<MatchesResponse?> = _footballMatches
+
+    private val _matchesUiStates: MutableStateFlow<MatchesUiStates> = MutableStateFlow(
+        MatchesUiStates.Default
+    )
+
+
+    fun getFootballMatches(
+        onFailure: (String) -> Unit,
+        onSuccess: (MatchesResponse) -> Unit,
+    ) {
+        viewModelScope.launch(context = Dispatchers.IO) {
+            _matchesUiStates.emit(MatchesUiStates.Loading)
+            slRepository.getAllFootballMatches(
+                onSuccess = { successResponse ->
+                    viewModelScope.launch(context = Dispatchers.IO) {
+                        _matchesUiStates.emit(MatchesUiStates.Success(successResponse))
+                    }
+                },
+                onFailure = { error ->
+                    viewModelScope.launch(context = Dispatchers.IO) {
+                        _matchesUiStates.emit(MatchesUiStates.Error(error))
+                    }
+                },
+            )
+        }
+    }
+
 
     fun getPlayerDetail(
         onFailure: (String) -> Unit,
@@ -20,18 +48,6 @@ class MatchesViewModel(private val slRepository: SLRepositoryImpl) : ViewModel()
     ) {
         viewModelScope.launch {
             slRepository.getPlayerDetail(
-                onSuccess, onFailure,
-            )
-        }
-    }
-
-
-    fun getFootballMatches(
-        onFailure: (String) -> Unit,
-        onSuccess: (MatchesResponse) -> Unit,
-    ) {
-        viewModelScope.launch {
-            slRepository.getAllFootballMatches(
                 onSuccess, onFailure,
             )
         }
