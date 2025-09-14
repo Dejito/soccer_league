@@ -18,6 +18,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -27,18 +28,46 @@ import androidx.compose.ui.graphics.Color
 import com.mobile.soccerleague.presentation.components.KegowDivider
 import com.mobile.soccerleague.data.local.DataSource
 import com.mobile.soccerleague.data.local.Score
+import com.mobile.soccerleague.presentation.matches.viewmodel.MatchesUiStates
 
+
+@Composable
+fun LivescoreScreen(matchesViewModel: MatchesViewModel = koinViewModel()){
+
+    matchesViewModel.getFootballMatches(onFailure= {}, onSuccess={})
+
+    val matches = matchesViewModel.footballMatches.collectAsState().value
+//    val matchesUiState = matchesViewModel.footballMatches.collectAsState().value
+
+    when (val matchesUiStates = matchesViewModel.fetchMatchesUiStates.collectAsState().value) {
+
+        is MatchesUiStates.Default -> {}
+
+        is MatchesUiStates.Loading -> {}
+
+        is MatchesUiStates.Error -> {
+
+        }
+
+        is MatchesUiStates.Success -> {
+            LiveScores()
+        }
+    }
+}
 
 @Composable
 fun LiveScores(modifier: Modifier = Modifier, matchesViewModel: MatchesViewModel = koinViewModel()) {
 
     val scoresList = DataSource().loadScores()
-    var selectedBusiness: BusinessDetails? by remember { mutableStateOf(null) }
+    var selectedBusiness by remember { mutableStateOf(null) }
 
-    LaunchedEffect() { }
+    LaunchedEffect(selectedBusiness) {
 
-    val matches = matchesViewModel.getFootballMatches(onFailure= {}, onSuccess={})
+    }
 
+    matchesViewModel.getFootballMatches(onFailure= {}, onSuccess={})
+
+    val matches = matchesViewModel.footballMatches.collectAsState().value
 
     Scaffold(
 //        topBar = TopAppBar(title = "", actions = {})

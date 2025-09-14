@@ -19,6 +19,7 @@ navigationCompose = "2.8.5"
 koin = "4.0.1"
 kotlinxCoroutinesCore = "1.10.1"
 kotlin-serialization = "1.9.10"
+coil-gif = "2.7.0"
 
 
 
@@ -52,6 +53,7 @@ koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", versi
 koin-compose-viewmodel-v401 = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+coil-gif = { module = "io.coil-kt:coil-gif", version.ref = "coil-gif" }
 
 
 [plugins]

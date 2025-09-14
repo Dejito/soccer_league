@@ -82,6 +82,9 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.koin.compose.viewmodel.v401)
 
+    //others
+    implementation(libs.coil.gif)
+
 
     //test
     testImplementation(libs.junit)
