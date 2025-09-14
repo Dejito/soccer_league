@@ -28,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import com.mobile.soccerleague.data.entity.response.Match
 import com.mobile.soccerleague.presentation.components.KegowDivider
 import com.mobile.soccerleague.data.local.DataSource
 import com.mobile.soccerleague.data.local.Score
@@ -84,20 +85,19 @@ fun LiveScores(modifier: Modifier = Modifier, matchesViewModel: MatchesViewModel
                 .padding(paddingValues)
                 .padding(16.dp)
         ) {
-            LazyColumn(
-//                contentPadding = PaddingValues(6.dp)
-            ) {
-                items(scoresList) { score ->
+            LazyColumn {
+                items(matches?.matches ?: emptyList()) { score ->
                     MatchCard(score)
                 }
             }
+
 
         }
     }
 }
 
 @Composable
-fun MatchCard(score: Score) {
+fun MatchCard(score: Match) {
     Column {
         Row(
             modifier = Modifier
@@ -115,12 +115,12 @@ fun MatchCard(score: Score) {
                     style = MaterialTheme.typography.labelSmall
                 )
                 Text(
-                    text = score.utcDate,
+                    text = score.utcDate ?: "",
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(top = 4.dp)
                 )
                 Text(
-                    text = "MD: ${score.currentMatchDay}",
+                    text = "MD: ${score.matchday}",
                     style = MaterialTheme.typography.labelSmall,
                     modifier = Modifier.padding(top = 4.dp)
                 )
@@ -134,11 +134,11 @@ fun MatchCard(score: Score) {
 
             ) {
                 Text(
-                    text = score.homeTeam,
+                    text = score.homeTeam?.name ?: "",
                     style = MaterialTheme.typography.bodyMedium
                 )
                 Text(
-                    text = score.awayTeam,
+                    text = score.awayTeam?.name ?: "",
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier.padding(top = 12.dp)
                 )
@@ -160,12 +160,12 @@ fun MatchCard(score: Score) {
 
                 Column {
                     Text(
-                        text = score.homeScore.toString(),
+                        text = score.score?.fullTime?.home.toString(),
                         style = MaterialTheme.typography.bodyMedium
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = score.awayScore.toString(),
+                        text = score.score?.fullTime?.away.toString(),
                         style = MaterialTheme.typography.bodyMedium
                     )
                 }
