@@ -22,14 +22,12 @@ class MatchesViewModel(private val slRepository: SLRepositoryImpl) : ViewModel()
 
 
 
-    fun getFootballMatches(
-        onFailure: (String) -> Unit,
-        onSuccess: (MatchesResponse) -> Unit,
-    ) {
+    fun getFootballMatches() {
         viewModelScope.launch(context = Dispatchers.IO) {
             _fetchMatchesUiStates.emit(MatchesUiStates.Loading)
             slRepository.getAllFootballMatches(
                 onSuccess = { successResponse ->
+                        _footballMatches.value = successResponse
                     viewModelScope.launch(context = Dispatchers.IO) {
                         _fetchMatchesUiStates.emit(MatchesUiStates.Success(successResponse))
                     }

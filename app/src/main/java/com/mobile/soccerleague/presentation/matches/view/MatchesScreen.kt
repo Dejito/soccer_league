@@ -32,48 +32,59 @@ import com.mobile.soccerleague.data.entity.response.Match
 import com.mobile.soccerleague.presentation.components.KegowDivider
 import com.mobile.soccerleague.data.local.DataSource
 import com.mobile.soccerleague.data.local.Score
+import com.mobile.soccerleague.presentation.components.PetraBottomButton
 import com.mobile.soccerleague.presentation.matches.viewmodel.MatchesUiStates
 
 
 @Composable
-fun LivescoreScreen(matchesViewModel: MatchesViewModel = koinViewModel()){
+fun LivescoreScreen(matchesViewModel: MatchesViewModel = koinViewModel()) {
 
-    matchesViewModel.getFootballMatches(onFailure= {}, onSuccess={})
+    matchesViewModel.getFootballMatches()
 
-    val matches = matchesViewModel.footballMatches.collectAsState().value
+//    val matches = matchesViewModel.footballMatches.collectAsState().value
 //    val matchesUiState = matchesViewModel.footballMatches.collectAsState().value
 
     when (val matchesUiStates = matchesViewModel.fetchMatchesUiStates.collectAsState().value) {
 
-        is MatchesUiStates.Default -> {}
+
+
+        is MatchesUiStates.Default -> {
+            LiveScores()
+        }
 
         is MatchesUiStates.Loading -> {
             println("still loading......")
         }
 
         is MatchesUiStates.Error -> {
+
+            Column {
+                KegowDivider(height = 500.0)
+            PetraBottomButton(text = "Retry", onClick = {
+                matchesViewModel.getFootballMatches()
+            })
+            }
+
             println("still error ${matchesUiStates.errorMessage}")
 //            Image(painter = painterResource(R.drawa))
 //            Image(R.d)
         }
 
         is MatchesUiStates.Success -> {
+            println("emitted successfully........${matchesUiStates.matchResult}")
             LiveScores()
         }
     }
 }
 
 @Composable
-fun LiveScores(modifier: Modifier = Modifier, matchesViewModel: MatchesViewModel = koinViewModel()) {
+fun LiveScores(
+    modifier: Modifier = Modifier,
+    matchesViewModel: MatchesViewModel = koinViewModel()
+) {
 
     val scoresList = DataSource().loadScores()
     var selectedBusiness by remember { mutableStateOf(null) }
-
-    LaunchedEffect(selectedBusiness) {
-
-    }
-
-    matchesViewModel.getFootballMatches(onFailure= {}, onSuccess={})
 
     val matches = matchesViewModel.footballMatches.collectAsState().value
 
@@ -174,7 +185,7 @@ fun MatchCard(score: Match) {
 
         }
 
-       KegowDivider(height = 1.0, color = Color.Gray)
+        KegowDivider(height = 1.0, color = Color.Gray)
 
     }
 
