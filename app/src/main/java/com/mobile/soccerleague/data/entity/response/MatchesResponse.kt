@@ -6,93 +6,93 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MatchesResponse(
     @SerialName("filters")
-    val filters: Filters,
+    val filters: Filters? = null,
     @SerialName("resultSet")
-    val resultSet: ResultSet,
+    val resultSet: ResultSet? = null,
     @SerialName("matches")
-    val matches: List<Match>
+    val matches: List<Match>? = emptyList()
 )
 
 @Serializable
 data class Filters(
     @SerialName("dateFrom")
-    val dateFrom: String,
+    val dateFrom: String? = null,
     @SerialName("dateTo")
-    val dateTo: String,
+    val dateTo: String? = null,
     @SerialName("permission")
-    val permission: String
+    val permission: String? = null
 )
 
 @Serializable
 data class ResultSet(
     @SerialName("count")
-    val count: Int,
+    val count: Int? = null,
     @SerialName("competitions")
-    val competitions: String,
+    val competitions: String? = null,
     @SerialName("first")
-    val first: String,
+    val first: String? = null,
     @SerialName("last")
-    val last: String,
+    val last: String? = null,
     @SerialName("played")
-    val played: Int
+    val played: Int? = null
 )
 
 @Serializable
 data class Match(
     @SerialName("area")
-    val area: Area,
+    val area: MatchArea? = null,
     @SerialName("competition")
-    val competition: Competition,
+    val competition: MatchCompetition? = null,
     @SerialName("season")
-    val season: Season,
+    val season: Season? = null,
     @SerialName("id")
-    val id: Int,
+    val id: Int? = null,
     @SerialName("utcDate")
-    val utcDate: String,
+    val utcDate: String? = null,
     @SerialName("status")
-    val status: String,
+    val status: String? = null,
     @SerialName("matchday")
-    val matchday: Int,
+    val matchday: Int? = null,
     @SerialName("stage")
-    val stage: String,
+    val stage: String? = null,
     @SerialName("group")
     val group: String? = null,
     @SerialName("lastUpdated")
-    val lastUpdated: String,
+    val lastUpdated: String? = null,
     @SerialName("homeTeam")
-    val homeTeam: Team,
+    val homeTeam: MatchTeam? = null,
     @SerialName("awayTeam")
-    val awayTeam: Team,
+    val awayTeam: MatchTeam? = null,
     @SerialName("score")
-    val score: Score,
+    val score: Score? = null,
     @SerialName("odds")
-    val odds: Odds,
+    val odds: Odds? = null,
     @SerialName("referees")
-    val referees: List<Referee>
+    val referees: List<Referee>? = null
 )
 
 @Serializable
-data class Area(
+data class MatchArea(
     @SerialName("id")
-    val id: Int,
+    val id: Int? = null,
     @SerialName("name")
-    val name: String,
+    val name: String? = null,
     @SerialName("code")
-    val code: String,
+    val code: String? = null,
     @SerialName("flag")
     val flag: String? = null
 )
 
 @Serializable
-data class Competition(
+data class MatchCompetition(
     @SerialName("id")
-    val id: Int,
+    val id: Int? = null,
     @SerialName("name")
-    val name: String,
+    val name: String? = null,
     @SerialName("code")
-    val code: String,
+    val code: String? = null,
     @SerialName("type")
-    val type: String,
+    val type: String? = null,
     @SerialName("emblem")
     val emblem: String? = null
 )
@@ -100,29 +100,29 @@ data class Competition(
 @Serializable
 data class Season(
     @SerialName("id")
-    val id: Int,
+    val id: Int? = null,
     @SerialName("startDate")
-    val startDate: String,
+    val startDate: String? = null,
     @SerialName("endDate")
-    val endDate: String,
+    val endDate: String? = null,
     @SerialName("currentMatchday")
-    val currentMatchday: Int,
+    val currentMatchday: Int? = null,
     @SerialName("winner")
     val winner: String? = null
 )
 
 @Serializable
-data class Team(
+data class MatchTeam(
     @SerialName("id")
-    val id: Int,
+    val id: Int? = null,
     @SerialName("name")
-    val name: String,
+    val name: String? = null,
     @SerialName("shortName")
-    val shortName: String,
+    val shortName: String? = null,
     @SerialName("tla")
-    val tla: String,
+    val tla: String? = null,
     @SerialName("crest")
-    val crest: String
+    val crest: String? = null
 )
 
 @Serializable
@@ -130,11 +130,11 @@ data class Score(
     @SerialName("winner")
     val winner: String? = null,
     @SerialName("duration")
-    val duration: String,
+    val duration: String? = null,
     @SerialName("fullTime")
-    val fullTime: ScoreDetail,
+    val fullTime: ScoreDetail? = null,
     @SerialName("halfTime")
-    val halfTime: ScoreDetail
+    val halfTime: ScoreDetail? = null
 )
 
 @Serializable
@@ -148,7 +148,7 @@ data class ScoreDetail(
 @Serializable
 data class Odds(
     @SerialName("msg")
-    val msg: String
+    val msg: String? = null
 )
 
 @Serializable
@@ -162,6 +162,3 @@ data class Referee(
     @SerialName("nationality")
     val nationality: String? = null
 )
-
-
-

@@ -1,4 +1,4 @@
-package com.mobile.soccerleague.di
+package com.mobile.soccerleague.presentation.leagues
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -13,7 +13,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.mobile.soccerleague.di.livescore.viewmodel.LiveScoresViewModel
+import com.mobile.soccerleague.presentation.livescores.viewmodel.LiveScoresViewModel
 import org.koin.androidx.compose.koinViewModel
 
 

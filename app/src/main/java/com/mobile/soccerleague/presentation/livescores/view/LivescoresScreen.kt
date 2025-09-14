@@ -7,7 +7,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.mobile.soccerleague.di.livescore.viewmodel.LiveScoresViewModel
+import com.mobile.soccerleague.presentation.livescores.viewmodel.LiveScoresViewModel
 import org.koin.androidx.compose.koinViewModel
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +28,9 @@ import com.mobile.soccerleague.data.local.Score
 fun LiveScores(modifier: Modifier = Modifier, matchesViewModel: LiveScoresViewModel = koinViewModel()) {
 
     val scoresList = DataSource().loadScores()
+
+    matchesViewModel.getFootballMatches()
+
 
     Scaffold(
 //        topBar = TopAppBar(title = "", actions = {})
