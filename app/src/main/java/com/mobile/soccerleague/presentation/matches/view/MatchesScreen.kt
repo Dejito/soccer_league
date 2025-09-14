@@ -1,5 +1,7 @@
 package com.mobile.soccerleague.presentation.matches.view
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.R
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -25,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import com.mobile.soccerleague.presentation.components.KegowDivider
 import com.mobile.soccerleague.data.local.DataSource
 import com.mobile.soccerleague.data.local.Score
@@ -43,10 +46,14 @@ fun LivescoreScreen(matchesViewModel: MatchesViewModel = koinViewModel()){
 
         is MatchesUiStates.Default -> {}
 
-        is MatchesUiStates.Loading -> {}
+        is MatchesUiStates.Loading -> {
+            println("still loading......")
+        }
 
         is MatchesUiStates.Error -> {
-
+            println("still error ${matchesUiStates.errorMessage}")
+//            Image(painter = painterResource(R.drawa))
+//            Image(R.d)
         }
 
         is MatchesUiStates.Success -> {
