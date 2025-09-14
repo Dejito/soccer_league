@@ -18,8 +18,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SoccerLeagueTheme {
-                LiveScores(
-                    )
+                LiveScores()
 
             }
         }

@@ -19,7 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import com.mobile.soccerleague.presentation.livescores.view.components.KegowDivider
+import com.mobile.soccerleague.presentation.components.KegowDivider
 import com.mobile.soccerleague.data.local.DataSource
 import com.mobile.soccerleague.data.local.Score
 
