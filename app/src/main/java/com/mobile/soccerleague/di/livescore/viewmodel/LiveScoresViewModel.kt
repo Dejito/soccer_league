@@ -14,7 +14,18 @@ class LiveScoresViewModel(private val slRepository: SLRepositoryImpl) : ViewMode
         onSuccess: (PlayerResponse) -> Unit,
     ) {
         viewModelScope.launch {
-            slRepository.getAllFootballMatches(
+            slRepository.getPlayerDetail(
+                onSuccess, onFailure,
+            )
+        }
+    }
+
+    fun getFootballMatches(
+        onFailure: (String) -> Unit,
+        onSuccess: (PlayerResponse) -> Unit,
+    ) {
+        viewModelScope.launch {
+            slRepository.getPlayerDetail(
                 onSuccess, onFailure,
             )
         }

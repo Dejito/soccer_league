@@ -1,6 +1,7 @@
 package com.mobile.soccerleague.data.remote
 
 
+import com.mobile.soccerleague.data.entity.response.MatchesResponse
 import com.mobile.soccerleague.data.entity.response.PlayerResponse
 import com.mobile.soccerleague.data.entity.response.ResponseMessage
 import com.mobile.soccerleague.presentation.components.currentDateFormatted
@@ -153,7 +154,7 @@ class SLRepositoryImpl : SLRepository {
         }
     }
 
-    override suspend fun getAllFootballMatches(
+    override suspend fun getPlayerDetail(
         onSuccess: (response: PlayerResponse) -> Unit,
         onFailure: (error: String) -> Unit
     ) {
@@ -177,10 +178,10 @@ class SLRepositoryImpl : SLRepository {
 
 
     override suspend fun getAllFootballMatches(
-        onSuccess: (response: PlayerResponse) -> Unit,
+        onSuccess: (response: MatchesResponse) -> Unit,
         onFailure: (error: String) -> Unit
     ) {
-        makeRequest<PlayerResponse, Unit>(
+        makeRequest<MatchesResponse, Unit>(
             method = HttpMethod.Get,
             endpoint = "competitions/2021/matches?dateFrom=${currentDateSSubtracted()}&dateTo=${currentDateFormatted()}",
             onSuccess = onSuccess,
