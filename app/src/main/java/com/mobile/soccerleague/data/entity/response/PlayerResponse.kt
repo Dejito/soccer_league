@@ -31,13 +31,13 @@ data class PlayerResponse(
     val lastUpdated: String,
 
     @SerialName("currentTeam")
-    val currentTeam: Team
+    val currentTeam: PlayerTeam
 )
 
 @Serializable
-data class Team(
+data class PlayerTeam(
     @SerialName("area")
-    val area: Area,
+    val area: PlayerArea,
 
     @SerialName("id")
     val id: Int,
@@ -70,14 +70,14 @@ data class Team(
     val venue: String,
 
     @SerialName("runningCompetitions")
-    val runningCompetitions: List<Competition> = listOf(),
+    val runningCompetitions: List<PlayerCompetition> = listOf(),
 
     @SerialName("contract")
     val contract: Contract
 )
 
 @Serializable
-data class Area(
+data class PlayerArea(
     @SerialName("id")
     val id: Int,
 
@@ -92,7 +92,7 @@ data class Area(
 )
 
 @Serializable
-data class Competition(
+data class PlayerCompetition(
     @SerialName("id")
     val id: Int,
 

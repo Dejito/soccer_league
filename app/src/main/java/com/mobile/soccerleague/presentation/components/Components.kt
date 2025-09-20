@@ -21,6 +21,9 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -28,6 +31,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.R
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
@@ -39,6 +43,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -51,6 +56,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
+
+const val kegowGreen = 0xFF94C43D
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -396,3 +405,61 @@ fun PetraBottomButton(
         }
     }
 }
+
+//@Composable
+//fun SLFailedDialog(
+//    title: String = "Failed",
+//    subtitle: String,
+//    onOkayClicked: () -> Unit
+//) {
+//    Dialog(
+//        properties = DialogProperties(
+//        ),
+//        onDismissRequest = { onOkayClicked() },
+//        content = {
+//            Card(
+//                elevation = CardDefaults.cardElevation(
+//                    defaultElevation = 2.dp
+//                ),
+//                modifier = Modifier.padding(vertical = 19.dp, horizontal = 36.dp)
+//            ) {
+//                Column(
+//                    modifier = Modifier
+//                        .padding(horizontal = 16.dp, vertical = 20.dp)
+//                        .background(Color(0xFFFFFFFF))
+//                        .fillMaxWidth(),
+//                    horizontalAlignment = Alignment.CenterHorizontally,
+//                ) {
+//                    GifIm(
+//                        gifImage = R.drawable.error_occured,
+//                        modifier = Modifier.size(120.dp)
+//                    )
+//                    Text(
+//                        text = title,
+//                        fontWeight = FontWeight.Bold,
+//                        fontSize = 20.sp,
+//                        color = Color(kegowGreen),
+//                        modifier = Modifier.padding(top = 5.dp, bottom = 8.dp),
+//                    )
+//                    Text(
+//                        text = subtitle,
+//                        fontSize = 14.5.sp,
+//                        color = Color(0xFF4D596B),
+//                        fontWeight = FontWeight.W500,
+//                        textAlign = TextAlign.Center,
+//                        lineHeight = 20.sp,
+//                        modifier = Modifier.padding(
+//                            top = 0.dp,
+//                            bottom = 25.dp,
+//                            start = 16.dp,
+//                            end = 16.dp
+//                        ),
+//                    )
+//                    PetraBottomButton(
+//                        onClick = onOkayClicked
+//                    )
+//                }
+//            }
+//        },
+//    )
+//}
