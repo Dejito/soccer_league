@@ -1,7 +1,7 @@
 package com.mobile.soccerleague.presentation.matches.view
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.R
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
@@ -12,40 +12,37 @@ import androidx.compose.ui.unit.dp
 import com.mobile.soccerleague.presentation.matches.viewmodel.MatchesViewModel
 import org.koin.androidx.compose.koinViewModel
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import com.mobile.soccerleague.data.entity.response.Match
 import com.mobile.soccerleague.presentation.components.KegowDivider
-import com.mobile.soccerleague.data.local.DataSource
-import com.mobile.soccerleague.data.local.Score
 import com.mobile.soccerleague.presentation.components.PetraBottomButton
+import com.mobile.soccerleague.presentation.components.TitleText
 import com.mobile.soccerleague.presentation.matches.viewmodel.MatchesUiStates
 
 
 @Composable
-fun LivescoreScreen(matchesViewModel: MatchesViewModel = koinViewModel()) {
-
+fun LivescoresScreen(matchesViewModel: MatchesViewModel = koinViewModel()) {
+val leKey = listOf(1,2,3)
+    LaunchedEffect(keys = arrayOf(leKey[0])) {
     matchesViewModel.getFootballMatches()
+    }
 
-//    val matches = matchesViewModel.footballMatches.collectAsState().value
-//    val matchesUiState = matchesViewModel.footballMatches.collectAsState().value
 
     when (val matchesUiStates = matchesViewModel.fetchMatchesUiStates.collectAsState().value) {
-
 
 
         is MatchesUiStates.Default -> {
@@ -53,16 +50,36 @@ fun LivescoreScreen(matchesViewModel: MatchesViewModel = koinViewModel()) {
         }
 
         is MatchesUiStates.Loading -> {
-            println("still loading......")
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                TitleText(
+                    "Pls wait \n Initializing...",
+                    fontSize = 16, fontWeight = FontWeight.W500
+                )
+            }
+//            println("still loading......")
         }
 
         is MatchesUiStates.Error -> {
 
-            Column {
-                KegowDivider(height = 500.0)
-            PetraBottomButton(text = "Retry", onClick = {
-                matchesViewModel.getFootballMatches()
-            })
+            Column(
+                modifier = Modifier
+                    .padding(24.dp)
+                    .fillMaxSize(),
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                TitleText(
+                    "Error message is: ${matchesUiStates.errorMessage}",
+                    fontSize = 16, fontWeight = FontWeight.W500
+                )
+                PetraBottomButton(
+                    text = "Retry",
+                    onClick = {
+                        matchesViewModel.getFootballMatches()
+                    },
+                )
             }
 
             println("still error ${matchesUiStates.errorMessage}")
@@ -71,25 +88,23 @@ fun LivescoreScreen(matchesViewModel: MatchesViewModel = koinViewModel()) {
         }
 
         is MatchesUiStates.Success -> {
-            println("emitted successfully........${matchesUiStates.matchResult}")
+//            println("emitted successfully........${matchesUiStates.matchResult}")
             LiveScores()
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LiveScores(
     modifier: Modifier = Modifier,
     matchesViewModel: MatchesViewModel = koinViewModel()
 ) {
 
-    val scoresList = DataSource().loadScores()
-    var selectedBusiness by remember { mutableStateOf(null) }
-
     val matches = matchesViewModel.footballMatches.collectAsState().value
 
     Scaffold(
-//        topBar = TopAppBar(title = "", actions = {})
+        topBar = { TopAppBar(title = { TitleText("Livescores") }, actions = {}) }
     ) { paddingValues ->
         Column(
             modifier = modifier

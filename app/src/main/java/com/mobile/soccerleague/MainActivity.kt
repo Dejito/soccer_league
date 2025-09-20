@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.mobile.soccerleague.presentation.leagues.SampleScreen
-import com.mobile.soccerleague.presentation.matches.view.LivescoreScreen
+import com.mobile.soccerleague.presentation.leagues.TestingView
+import com.mobile.soccerleague.presentation.matches.view.LivescoresScreen
 import com.mobile.soccerleague.ui.theme.SoccerLeagueTheme
 
 class MainActivity : ComponentActivity() {
@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SoccerLeagueTheme {
-                LivescoreScreen()
+                LivescoresScreen()
 //                SampleScreen()
             }
         }
